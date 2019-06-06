@@ -15,6 +15,7 @@ angular.module('bs4-selectbox').directive('bs4Selectbox', [function () {
         scope: {
             options: '=', // must be array of objects or a function that returns an array of objects
             model: '=', // must be array of objects
+            modelid: '=',
             search: '=?', // boolean (default = true)
             multiple: '@',
             searchAttrs: '@',
@@ -142,10 +143,15 @@ function bs4SelectboxController($scope) {
     function select(evt, option) {
         if (ctrl.multiple) {
             ctrl.model.push(option);
+            ctrl.modelid = ctrl.model.map(function(r){return r.id})
         } else {
             $scope.item = option;
             ctrl.model[0] = option;
+            ctrl.modelid = ctrl.model[0].id
         }
+
+
+        
 
         ctrl.searchTerms = '';
 
@@ -162,6 +168,11 @@ function bs4SelectboxController($scope) {
         }
 
         ctrl.model.splice(ctrl.model.indexOf(option), 1);
+        if (ctrl.multiple) {
+            ctrl.modelid = ctrl.model.map(function(r){return r.id})
+        } else {
+            ctrl.modelid = ctrl.model[0].id
+        }        
         evt.stopPropagation();
 
         ctrl.callback && ctrl.callback('remove', option, this.model, evt);
