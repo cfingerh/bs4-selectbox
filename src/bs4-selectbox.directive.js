@@ -69,7 +69,8 @@ angular.module('bs4-selectbox').directive('bs4Selectbox', [function () {
         // keep focus
         // focus();
 
-        // ctrl.callback && ctrl.callback('add', option, this.model, evt);
+        object = { option: option, objeto: this.objeto, previous: this.previous, evt: evt }
+        ctrl.callback && ctrl.callback(object)
       }
 
       $scope.change = function () {
