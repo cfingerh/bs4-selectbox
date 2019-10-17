@@ -102,6 +102,20 @@ angular.module('bs4-selectbox').directive('bs4Selectbox', [function () {
         $scope.asignar()
       })
 
+      $scope.keydown = function (evt) {
+        if (evt.keyCode === 40) {
+          const items = document.querySelector('#bs4-selectbox-' + ctrl.uuid + '-menu').children
+          items.length > 1 && items[1] && items[1].focus()
+        }
+      }
+
+      $scope.itemkeydown = function (evt, i) {
+        if (evt.keyCode === 38 && i === 0) {
+          // Select input
+          document.querySelector('#bs4-selectbox-' + ctrl.uuid + '-input').focus()
+        }
+      }
+
       function accent_fold (s) {
         if (!s) { return '' }
         var ret = ''
