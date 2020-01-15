@@ -94,7 +94,7 @@ angular.module('bs4-selectbox').directive('bs4Selectbox', [function () {
         if (!ctrl.multiple) {
           $scope.item = ctrl.options.filter(function (el) { return el.id == ctrl.model })[0]
         } else {
-          $scope.items = ctrl.options.filter(function (el) { return ctrl.model.indexOf(el.id) >= 0 })
+          $scope.items = ctrl.options.filter(function (el) { return ctrl.model && ctrl.model.indexOf(el.id) >= 0 })
         }
       }
 
