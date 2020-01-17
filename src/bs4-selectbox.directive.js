@@ -31,6 +31,8 @@ angular.module('bs4-selectbox').directive('bs4Selectbox', [function () {
     link: function ($scope, el, attrs, ctrl) {
       ctrl = $scope
 
+      // debugger
+
       $scope.uuid = uuidv4()
 
       function focus () {
@@ -69,7 +71,7 @@ angular.module('bs4-selectbox').directive('bs4Selectbox', [function () {
         // keep focus
         // focus();
 
-        object = { option: option, objeto: this.objeto, previous: this.previous, evt: evt }
+        var object = { option: option, objeto: this.objeto, previous: this.previous, evt: evt }
         ctrl.callback && ctrl.callback(object)
       }
 
@@ -94,6 +96,12 @@ angular.module('bs4-selectbox').directive('bs4Selectbox', [function () {
         if (!ctrl.multiple) {
           $scope.item = ctrl.options.filter(function (el) { return el.id == ctrl.model })[0]
         } else {
+
+          //cuando se carga de routparams no siempre (por ejemplo cuando se seleccion solo uno)lo guarda como array 
+          if (!Array.isArray(ctrl.model)) {
+            ctrl.model = [ctrl.model]
+          }
+          ctrl.model = ctrl.model.map(function (el) { return parseInt(el) })
           $scope.items = ctrl.options.filter(function (el) { return ctrl.model && ctrl.model.indexOf(el.id) >= 0 })
         }
       }
