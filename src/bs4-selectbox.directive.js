@@ -98,7 +98,7 @@ angular.module('bs4-selectbox').directive('bs4Selectbox', [function () {
         } else {
 
           //cuando se carga de routparams no siempre (por ejemplo cuando se seleccion solo uno)lo guarda como array 
-          if (!Array.isArray(ctrl.model)) {
+          if (!Array.isArray(ctrl.model) && ctrl.model && !isNaN(ctrl.model)) {
             ctrl.model = [ctrl.model]
           }
           ctrl.model = ctrl.model.map(function (el) { return parseInt(el) })
