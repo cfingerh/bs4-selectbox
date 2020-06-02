@@ -72,7 +72,7 @@ angular.module('bs4-selectbox').directive('bs4Selectbox', [function () {
         // keep focus
         // focus();
 
-        var object = { option: option, objeto: this.objeto, previous: this.previous, evt: evt }
+        var object = { option: option, objeto: this.model, previous: this.previous, evt: evt }
         ctrl.callback && ctrl.callback(object)
       }
 
