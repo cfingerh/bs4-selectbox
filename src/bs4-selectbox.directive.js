@@ -19,7 +19,7 @@ angular.module('bs4-selectbox').directive('bs4Selectbox', [function () {
       multiple: '@',
       searchAttrs: '@',
       key: '@',
-      objeto: '<',
+      item: '<',
       defaultOpen: '<', // abierto el selectbox por default
       callback: '=?', // callback to be called on change
       placeholder: '@',
@@ -72,7 +72,7 @@ angular.module('bs4-selectbox').directive('bs4Selectbox', [function () {
         // keep focus
         // focus();
 
-        var object = { option: option, objeto: this.model, previous: this.previous, evt: evt }
+        var object = { option: option, objeto: this.model, previous: this.previous, evt: evt, item:this.item }
         ctrl.callback && ctrl.callback(object)
       }
 
